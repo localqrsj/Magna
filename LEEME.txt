@@ -1,0 +1,40 @@
+MAGNA TIENDA CLUB — catálogo ampliado
+
+CONTENIDO
+- index.html: página principal y diseño responsive.
+- products.json: catálogo de productos extraídos del PDF de Arbell.
+- assets/logo-magna-horizontal.png: logo para encabezado.
+- assets/logo-magna-negativo.png: logo para pie de página.
+- assets/productos/: recortes de imágenes de los productos tomados de las páginas del PDF.
+
+CATÁLOGO
+Se incorporaron 460 referencias detectadas en el PDF compartido, organizadas en:
+- Fragancias
+- Maquillaje
+- Cuidado de la piel
+- Cuidado del cabello
+- Suplementos
+- Niños
+
+Se excluyeron las páginas de Joyería y Hogar (y sus artículos asociados). Ofertas especiales es un filtro que muestra productos con precio promocional identificable en el PDF.
+
+WHATSAPP
+Todos los botones individuales abren un chat al número +54 9 2646 16-4416 con el nombre del producto y su código Arbell incluidos en el mensaje.
+El número está en index.html en la constante:
+const WHATSAPP_NUMBER = "5492646164416";
+
+IMPORTANTE SOBRE PRECIOS Y FOTOGRAFÍAS
+Los nombres, presentaciones, descripciones, códigos y precios se basan en el PDF que compartiste. Algunos productos del PDF no muestran un precio individual legible o tienen el precio en un bloque compartido; en esos casos la ficha indica consultar precio. Confirmá siempre el precio y stock con el vendedor antes del pedido.
+Las imágenes son recortes de las páginas del PDF para mantener la correspondencia con el material fuente. En algunas páginas el catálogo presenta varios productos juntos; por eso ciertos recortes pueden incluir parte del diseño de página o del texto original.
+El PDF indica vigencia del 06/11/2026 al 04/01/2027 y advierte que los precios pueden cambiar.
+
+CÓMO PROBAR
+Como la web carga products.json con fetch, no conviene abrir index.html con doble clic (file://).
+Para probar localmente:
+1. Abrí la carpeta del proyecto en Visual Studio Code.
+2. Iniciá Live Server sobre index.html.
+O subí toda la carpeta a GitHub Pages / Cloudflare Pages.
+
+PUBLICAR EN GITHUB PAGES
+Subí index.html, products.json y la carpeta assets completa al mismo nivel del repositorio.
+No renombres ni separes esos archivos.

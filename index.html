@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubrí el catálogo de Magna Tienda Club. Productos Arbell, fragancias, maquillaje, cuidado personal y consultas por WhatsApp.">
+  <meta name="theme-color" content="#090947">
+  <title>Magna Tienda Club | Catálogo</title>
+  <style>
+    :root{
+      --navy:#090947;--navy2:#15165e;--green:#19b879;--green-dark:#087456;
+      --gold:#d7b15d;--ink:#17182d;--muted:#74768a;--paper:#fff;
+      --soft:#f5f7f8;--line:#e8eaf0;--shadow:0 18px 55px rgba(9,9,71,.09);
+      --radius:22px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    .announcement{background:var(--navy);color:#fff;text-align:center;padding:9px 14px;font-size:11px;letter-spacing:.09em}
+    .announcement strong{color:#6bdfb0}
+    .site-header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(9,9,71,.07)}
+    .header-inner{max-width:1220px;margin:auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .brand{display:flex;align-items:center;min-width:175px}
+    .brand img{width:190px;max-width:100%;height:auto;display:block}
+    .nav{display:flex;align-items:center;gap:20px;color:#4d4f64;font-size:12px}
+    .nav a{white-space:nowrap;transition:color .2s}
+    .nav a:hover{color:var(--green-dark)}
+    .header-cta{background:var(--navy);color:white;border-radius:999px;padding:12px 17px;font-size:12px;font-weight:750;white-space:nowrap}
+    .menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;color:var(--navy)}
+    .hero-wrap{padding:30px 24px 48px;background:linear-gradient(180deg,#f7f9fa 0%,#fff 100%)}
+    .hero{max-width:1170px;min-height:465px;margin:auto;overflow:hidden;position:relative;border-radius:30px;
+      background:radial-gradient(circle at 80% 15%,rgba(25,184,121,.22),transparent 32%),linear-gradient(120deg,#090947 0%,#10125b 62%,#073d4d 100%);
+      color:#fff;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;box-shadow:0 28px 70px rgba(9,9,71,.16)}
+    .hero:after{content:"";position:absolute;width:370px;height:370px;border:1px solid rgba(215,177,93,.22);border-radius:50%;right:8%;top:11%;pointer-events:none}
+    .hero-copy{position:relative;z-index:2;padding:58px 0 58px 62px}
+    .eyebrow{color:#7be0b5;font-size:10px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
+    h1{margin:18px 0 15px;font-size:clamp(38px,5vw,62px);line-height:1.02;letter-spacing:-.055em;max-width:570px}
+    h1 span{color:var(--gold)}
+    .hero-copy p{color:rgba(255,255,255,.76);line-height:1.75;font-size:14px;max-width:445px;margin:0 0 25px}
+    .hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:11px}
+    .btn{border:0;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 20px;border-radius:999px;font-weight:750;font-size:12px;cursor:pointer;transition:transform .2s,box-shadow .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-green{background:var(--green);color:#062f27;box-shadow:0 10px 26px rgba(25,184,121,.2)}
+    .btn-outline{color:#fff;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.06)}
+    .hero-visual{z-index:1;min-height:405px;display:grid;place-items:center;padding:25px 48px 25px 0;position:relative}
+    .hero-visual:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.07)}
+    .hero-product{position:relative;width:min(100%,405px);aspect-ratio:1/1;border-radius:25px;background:#fff;display:grid;place-items:center;overflow:hidden;box-shadow:0 25px 65px rgba(0,0,0,.24);transform:rotate(1.5deg)}
+    .hero-product img{width:100%;height:100%;object-fit:contain;display:block;padding:10px}
+    .product-stamp{position:absolute;right:3%;bottom:7%;background:var(--gold);color:var(--navy);border-radius:50%;width:88px;height:88px;display:grid;place-content:center;text-align:center;font-size:9px;font-weight:900;line-height:1.3;letter-spacing:.08em;transform:rotate(8deg);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+    .trust-row{max-width:1050px;margin:23px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 10px}
+    .trust-item{display:flex;justify-content:center;align-items:center;gap:10px;color:#66697c;font-size:11px}
+    .trust-icon{width:33px;height:33px;display:grid;place-items:center;border-radius:50%;background:#eaf8f1;color:var(--green-dark);font-size:15px}
+    .section{max-width:1220px;margin:auto;padding:58px 24px}
+    .section-heading{display:flex;justify-content:space-between;align-items:end;gap:22px;margin-bottom:25px}
+    .section-kicker{color:var(--green-dark);text-transform:uppercase;font-size:10px;font-weight:850;letter-spacing:.18em}
+    h2{color:var(--navy);font-size:clamp(27px,3vw,38px);letter-spacing:-.04em;line-height:1.12;margin:9px 0 0}
+    .section-heading p{color:var(--muted);max-width:400px;font-size:12px;line-height:1.7;margin:0}
+    .featured-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr;box-shadow:var(--shadow);background:#fff}
+    .featured-image{min-height:370px;display:grid;place-items:center;padding:30px;background:linear-gradient(145deg,#f5f7fa,#fff)}
+    .featured-image img{width:100%;max-width:365px;height:315px;object-fit:contain}
+    .featured-info{padding:40px 48px;display:flex;flex-direction:column;justify-content:center}
+    .label-pill{align-self:flex-start;background:#e9f8f1;color:#087456;border-radius:999px;padding:8px 12px;font-size:9px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+    .featured-info h3{color:var(--navy);font-size:31px;letter-spacing:-.04em;margin:16px 0 9px}
+    .description{color:#66697c;font-size:13px;line-height:1.75;margin:0}
+    .notes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+    .note{border-left:2px solid var(--gold);padding-left:9px}
+    .note b{display:block;color:var(--navy);font-size:9px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+    .note span{color:#77798b;font-size:10px;line-height:1.5}
+    .price-line{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:4px 0 18px}
+    .price{font-size:29px;font-weight:850;color:var(--navy);letter-spacing:-.04em}
+    .old-price{color:#9698a6;text-decoration:line-through;font-size:13px}
+    .discount{color:#087456;background:#e9f8f1;border-radius:6px;padding:5px 7px;font-size:9px;font-weight:850}
+    .small-print{color:#9294a1;font-size:10px;margin-top:10px;line-height:1.5}
+    .catalog-area{background:var(--soft)}
+    .catalog-area .section{padding-top:58px;padding-bottom:70px}
+    .catalog-tools{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:14px;align-items:center;margin:26px 0 16px}
+    .search-wrap{position:relative}
+    .search-wrap span{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#9294a1;font-size:17px}
+    .search{width:100%;border:1px solid #e2e5ec;border-radius:14px;background:#fff;padding:14px 15px 14px 43px;color:var(--ink);outline:none;font-size:13px}
+    .search:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(25,184,121,.1)}
+    .sort-select{border:1px solid #e2e5ec;border-radius:14px;background:#fff;padding:13px 14px;color:#55576b;font-size:12px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+    .filter-btn{border:1px solid #e2e5ec;background:#fff;color:#65677b;border-radius:999px;padding:9px 14px;font-size:11px;font-weight:700;cursor:pointer;transition:.2s}
+    .filter-btn:hover{border-color:var(--green);color:var(--green-dark)}
+    .filter-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+    .results-line{display:flex;justify-content:space-between;gap:12px;align-items:center;color:#858798;font-size:11px;margin:0 0 14px}
+    .product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .product-card{background:#fff;border:1px solid #e9ebf0;border-radius:17px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:transform .2s,box-shadow .2s}
+    .product-card:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(9,9,71,.08)}
+    .product-photo{height:218px;background:linear-gradient(145deg,#f7f8fa,#fff);display:grid;place-items:center;padding:12px;position:relative}
+    .product-photo img{width:100%;height:100%;object-fit:contain;display:block}
+    .product-code{position:absolute;left:11px;top:11px;background:rgba(9,9,71,.86);color:#fff;border-radius:6px;padding:5px 7px;font-size:9px;letter-spacing:.04em}
+    .offer-tag{position:absolute;right:10px;top:10px;background:#e9f8f1;color:#087456;border-radius:6px;padding:5px 7px;font-size:9px;font-weight:850}
+    .product-body{padding:15px 14px 14px;display:flex;flex-direction:column;flex:1}
+    .product-category{color:var(--green-dark);font-size:9px;text-transform:uppercase;font-weight:850;letter-spacing:.1em;margin-bottom:6px}
+    .product-body h3{font-size:14px;line-height:1.35;color:var(--navy);margin:0 0 7px;min-height:38px}
+    .product-desc{font-size:10px;line-height:1.55;color:#858798;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:45px}
+    .product-meta{font-size:10px;color:#77798b;margin:0 0 10px}
+    .product-price{margin-top:auto;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:7px 0 11px}
+    .product-price strong{color:var(--navy);font-size:18px}
+    .product-price del{color:#9b9dab;font-size:10px}
+    .price-consult{font-size:11px;color:#6e7183;padding:8px 0 11px}
+    .product-wa{width:100%;padding:11px 10px;border-radius:10px;font-size:10px}
+    .load-more-wrap{text-align:center;padding-top:28px}
+    .load-more{background:#fff;color:var(--navy);border:1px solid #dfe2e9;border-radius:999px;padding:13px 22px;font-size:12px;font-weight:800;cursor:pointer}
+    .load-more:hover{border-color:var(--green);color:var(--green-dark)}
+    .empty-state{grid-column:1/-1;background:#fff;border:1px dashed #d9dde5;border-radius:16px;padding:45px 20px;text-align:center;color:#77798b;font-size:13px}
+    .club-band{padding:0 24px 65px;background:var(--soft)}
+    .club-inner{max-width:1170px;margin:auto;border-radius:24px;background:#fff;padding:31px 38px;display:flex;justify-content:space-between;align-items:center;gap:20px;border:1px solid var(--line)}
+    .club-inner h2{font-size:24px;margin:0 0 7px}
+    .club-inner p{margin:0;color:#73758a;font-size:12px;line-height:1.6}
+    footer{background:var(--navy);color:#fff;padding:46px 24px 22px}
+    .footer-inner{max-width:1170px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:38px}
+    .footer-logo{width:250px;max-width:100%;height:auto;display:block;margin-bottom:16px}
+    .footer-copy{color:rgba(255,255,255,.62);font-size:11px;line-height:1.7;max-width:320px}
+    footer h4{color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.13em;margin:8px 0 16px}
+    .footer-links{display:grid;gap:10px;color:rgba(255,255,255,.75);font-size:11px}
+    .footer-bottom{max-width:1170px;margin:32px auto 0;border-top:1px solid rgba(255,255,255,.13);padding-top:17px;color:rgba(255,255,255,.45);font-size:9px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .whatsapp-float{position:fixed;z-index:35;right:20px;bottom:20px;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;color:#fff;background:#20bd69;box-shadow:0 9px 28px rgba(0,0,0,.2);font-size:24px;border:3px solid white}
+    @media(max-width:1000px){.nav{gap:12px;font-size:10px}.brand{min-width:145px}.brand img{width:160px}.header-cta{font-size:10px;padding:11px 13px}.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-copy{padding-left:42px}.featured-info{padding:34px}}
+    @media(max-width:700px){
+      .announcement{font-size:9px}.header-inner{padding:11px 16px;flex-wrap:wrap;gap:9px}.brand{min-width:0}.brand img{width:165px}
+      .menu-toggle{display:block;margin-left:auto}.header-cta{display:none}.nav{display:none;width:100%;order:3;flex-direction:column;align-items:stretch;gap:0;padding:6px 0}
+      .nav.open{display:flex}.nav a{padding:11px 4px;border-top:1px solid var(--line);font-size:12px}
+      .hero-wrap{padding:16px 12px 32px}.hero{grid-template-columns:1fr;border-radius:22px}.hero-copy{padding:34px 25px 6px}
+      h1{font-size:clamp(39px,11vw,54px)}.hero-copy p{font-size:12px}.hero-visual{min-height:285px;padding:17px 27px 32px}
+      .hero-product{width:min(82%,300px)}.hero-visual:before{width:255px;height:255px}.product-stamp{width:73px;height:73px;font-size:8px}
+      .trust-row{grid-template-columns:1fr;gap:9px;margin-top:18px}.trust-item{justify-content:flex-start;padding-left:13px}
+      .section{padding:44px 16px}.section-heading{display:block}.section-heading p{margin-top:12px}
+      .featured-card{grid-template-columns:1fr}.featured-image{min-height:255px;padding:20px}.featured-image img{height:230px}
+      .featured-info{padding:27px 22px 29px}.featured-info h3{font-size:26px}
+      .catalog-area .section{padding-top:44px;padding-bottom:50px}.catalog-tools{grid-template-columns:1fr}.sort-select{width:100%}
+      .filters{gap:7px}.filter-btn{font-size:10px;padding:8px 11px}
+      .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-photo{height:170px;padding:8px}
+      .product-body{padding:12px 10px}.product-body h3{font-size:12px;min-height:34px}.product-desc{font-size:9px;min-height:42px}
+      .product-price strong{font-size:16px}.product-wa{font-size:9px;padding:10px 6px}
+      .club-band{padding:0 16px 45px}.club-inner{padding:24px 21px;display:block}.club-inner .btn{margin-top:16px}
+      .footer-inner{grid-template-columns:1fr 1fr;gap:25px 17px}.footer-brand{grid-column:1/-1}.footer-logo{width:220px}
+    }
+    @media(max-width:360px){.product-grid{gap:8px}.product-photo{height:150px}.product-body{padding:10px 8px}.product-wa{font-size:8px}}
+  </style>
+</head>
+<body>
+  <div class="announcement">MAGNA TIENDA CLUB <strong>·</strong> Descubrí, elegí y consultá</div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#inicio" aria-label="Magna Tienda Club, inicio"><img src="assets/logo-magna-horizontal.png" alt="Magna Tienda Club"></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">Menú ☰</button>
+      <nav class="nav" id="mainNav" aria-label="Navegación principal">
+        <a href="#catalogo" data-nav-category="Fragancias">Fragancias</a>
+        <a href="#catalogo" data-nav-category="Maquillaje">Maquillaje</a>
+        <a href="#catalogo" data-nav-category="Cuidado de la piel">Piel</a>
+        <a href="#catalogo" data-nav-category="Cuidado del cabello">Cabello</a>
+        <a href="#catalogo" data-nav-category="Suplementos">Suplementos</a>
+        <a href="#catalogo" data-nav-category="Niños">Niños</a>
+        <a href="#catalogo" data-nav-category="Ofertas especiales">Ofertas</a>
+      </nav>
+      <a class="header-cta" href="#catalogo">Explorar catálogo ↗</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero-wrap">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Bienvenido a Magna Tienda Club</div>
+          <h1>Encontrá eso que <span>te encanta.</span></h1>
+          <p>Explorá productos, descubrí tus favoritos y consultá directamente con nuestro vendedor. Una experiencia simple, cercana y pensada para vos.</p>
+          <div class="hero-actions">
+            <a class="btn btn-green" href="#catalogo" data-nav-category="Fragancias">Ver fragancias <span>→</span></a>
+            <a class="btn btn-outline" href="#catalogo" data-nav-category="Todos">Ver todo el catálogo</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-product"><img src="assets/productos/6133.jpg" alt="Messi The Fragrance Eau de Parfum 100 ml"></div>
+          <div class="product-stamp">PRIMER<br>DESTACADO<br>DE MAGNA</div>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item"><span class="trust-icon">✦</span> Productos del catálogo Arbell</div>
+        <div class="trust-item"><span class="trust-icon">◷</span> Atención directa por WhatsApp</div>
+        <div class="trust-item"><span class="trust-icon">♡</span> Sin carrito ni pagos online</div>
+      </div>
+    </section>
+
+    <section class="section" id="destacado">
+      <div class="section-heading">
+        <div><div class="section-kicker">Empezamos por fragancias</div><h2>El primer protagonista de Magna.</h2></div>
+        <p>Messi The Fragrance abre nuestro catálogo. Conocé sus detalles y consultá por WhatsApp con un mensaje listo para enviar.</p>
+      </div>
+      <article class="featured-card">
+        <div class="featured-image"><img src="assets/productos/6133.jpg" alt="Messi The Fragrance Eau de Parfum"></div>
+        <div class="featured-info">
+          <span class="label-pill">Producto destacado · Fragancias</span>
+          <h3>Messi The Fragrance</h3>
+          <p class="description">Una fragancia masculina de familia olfativa ámbar-fougère. Salida de cardamomo, hoja de manzana y ciprés; corazón de cuero, raíz de iris francés y lavanda; fondo de cedro de Virginia, vainilla y patchouli.</p>
+          <div class="notes">
+            <div class="note"><b>Salida</b><span>Cardamomo, manzana y ciprés</span></div>
+            <div class="note"><b>Corazón</b><span>Cuero, iris y lavanda</span></div>
+            <div class="note"><b>Fondo</b><span>Cedro, vainilla y patchouli</span></div>
+          </div>
+          <div class="price-line"><span class="price">$99.900</span><span class="old-price">$139.000</span><span class="discount">Precio de catálogo</span></div>
+          <a class="btn btn-green" href="https://wa.me/5492646164416?text=Hola%2C%20quisiera%20consultar%20y%20realizar%20un%20pedido%20de%20Messi%20The%20Fragrance%20Eau%20de%20Parfum%20%28100%20ml%29%2C%20c%C3%B3digo%20Arbell%206133." target="_blank" rel="noopener noreferrer">Consultar y comprar por WhatsApp ↗</a>
+          <p class="small-print">Eau de Parfum · 100 ml · Código Arbell 6133. Precio del catálogo compartido; confirmar disponibilidad y vigencia con el vendedor.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="catalog-area" id="catalogo">
+      <div class="section">
+        <div class="section-heading">
+          <div><div class="section-kicker">Catálogo de productos</div><h2>Encontrá tu próximo favorito.</h2></div>
+          <p>Buscá por nombre o código, filtrá por categoría y consultá cada producto directamente por WhatsApp.</p>
+        </div>
+        <div class="catalog-tools">
+          <label class="search-wrap"><span>⌕</span><input class="search" id="searchInput" type="search" placeholder="Buscar producto, descripción o código..." autocomplete="off"></label>
+          <select class="sort-select" id="sortSelect" aria-label="Ordenar productos">
+            <option value="catalog">Orden del catálogo</option>
+            <option value="name">Nombre: A a Z</option>
+            <option value="price-low">Precio: menor a mayor</option>
+            <option value="price-high">Precio: mayor a menor</option>
+          </select>
+        </div>
+        <div class="filters" id="filters" aria-label="Filtrar por categoría">
+          <button class="filter-btn" data-category="Todos">Todos</button>
+          <button class="filter-btn active" data-category="Fragancias">Fragancias</button>
+          <button class="filter-btn" data-category="Maquillaje">Maquillaje</button>
+          <button class="filter-btn" data-category="Cuidado de la piel">Cuidado de la piel</button>
+          <button class="filter-btn" data-category="Cuidado del cabello">Cuidado del cabello</button>
+          <button class="filter-btn" data-category="Suplementos">Suplementos</button>
+          <button class="filter-btn" data-category="Niños">Niños</button>
+          <button class="filter-btn" data-category="Ofertas especiales">Ofertas especiales</button>
+        </div>
+        <div class="results-line"><span id="resultsCount">Cargando productos…</span><span>Catálogo Arbell · Período 6/2026</span></div>
+        <div class="product-grid" id="productGrid" aria-live="polite"><div class="empty-state">Estamos preparando el catálogo…</div></div>
+        <div class="load-more-wrap"><button class="load-more" id="loadMore" hidden>Mostrar más productos</button></div>
+      </div>
+    </section>
+
+    <section class="club-band">
+      <div class="club-inner">
+        <div><h2>¿Tenés alguna consulta?</h2><p>Escribinos por WhatsApp. El mensaje incluirá el producto que elegiste.</p></div>
+        <a class="btn btn-green" href="https://wa.me/5492646164416?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre%20Magna%20Tienda%20Club." target="_blank" rel="noopener noreferrer">Hablar con Magna ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><img class="footer-logo" src="assets/logo-magna-negativo.png" alt="Magna Tienda Club"><p class="footer-copy">Un espacio para descubrir productos, encontrar tus favoritos y recibir atención personalizada.</p></div>
+      <div><h4>Explorá</h4><div class="footer-links"><a href="#catalogo" data-nav-category="Fragancias">Fragancias</a><a href="#catalogo" data-nav-category="Maquillaje">Maquillaje</a><a href="#catalogo" data-nav-category="Cuidado de la piel">Cuidado de la piel</a><a href="#catalogo" data-nav-category="Ofertas especiales">Ofertas especiales</a></div></div>
+      <div><h4>Contacto</h4><div class="footer-links"><a href="https://wa.me/5492646164416?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre%20Magna%20Tienda%20Club." target="_blank" rel="noopener noreferrer">WhatsApp: +54 9 2646 16-4416</a><span>Pedidos y consultas directas</span></div></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Magna Tienda Club. Todos los derechos reservados.</span><span>Catálogo online · Pedidos por WhatsApp</span></div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/5492646164416?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre%20Magna%20Tienda%20Club." target="_blank" rel="noopener noreferrer" aria-label="Contactar a Magna por WhatsApp" title="Contactar por WhatsApp">✆</a>
+
+  <script>
+    const WHATSAPP_NUMBER = "5492646164416";
+    const PAGE_SIZE = 24;
+    const categoryOrder = ["Fragancias","Maquillaje","Cuidado de la piel","Cuidado del cabello","Suplementos","Niños"];
+    let products = [];
+    let activeCategory = "Fragancias";
+    let visibleCount = PAGE_SIZE;
+
+    const grid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+    const resultsCount = document.getElementById("resultsCount");
+    const loadMore = document.getElementById("loadMore");
+
+    const money = value => {
+      const n = Number(String(value || "").replace(/\D/g,""));
+      return n ? n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0}) : "";
+    };
+    const waLink = (product) => {
+      const message = `Hola, quisiera consultar y realizar un pedido de ${product.name} (código Arbell ${product.code}).`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    };
+    const isOffer = p => {
+      const regular = Number(String(p.regularPrice || "").replace(/\D/g,""));
+      const current = Number(String(p.price || "").replace(/\D/g,""));
+      return regular > 0 && current > 0 && current < regular;
+    };
+    const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    function productCard(p) {
+      const offer = isOffer(p);
+      const shownPrice = p.price || p.regularPrice;
+      const priceHTML = shownPrice
+        ? `<div class="product-price"><strong>${money(shownPrice)}</strong>${offer && p.regularPrice ? `<del>${money(p.regularPrice)}</del>` : ""}</div>`
+        : `<div class="price-consult">Consultar precio y disponibilidad</div>`;
+      const description = p.description && p.description.toLowerCase() !== p.name.toLowerCase()
+        ? p.description : "Consultá con nuestro vendedor para conocer más detalles de este producto.";
+      return `<article class="product-card">
+        <div class="product-photo">
+          <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='assets/logo-magna-horizontal.png';">
+          <span class="product-code">Cód. ${escapeHTML(p.code)}</span>
+          ${offer ? '<span class="offer-tag">OFERTA</span>' : ""}
+        </div>
+        <div class="product-body">
+          <div class="product-category">${escapeHTML(p.category)}</div>
+          <h3>${escapeHTML(p.name)}</h3>
+          <p class="product-desc">${escapeHTML(description)}</p>
+          ${p.size ? `<p class="product-meta">Presentación: ${escapeHTML(p.size)}</p>` : ""}
+          ${priceHTML}
+          <a class="btn btn-green product-wa" href="${waLink(p)}" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp ↗</a>
+        </div>
+      </article>`;
+    }
+    function getFilteredProducts() {
+      const term = searchInput.value.trim().toLocaleLowerCase("es-AR");
+      let list = products.filter(p => {
+        const categoryMatch = activeCategory === "Todos" ||
+          (activeCategory === "Ofertas especiales" ? isOffer(p) : p.category === activeCategory);
+        const haystack = `${p.name} ${p.code} ${p.category} ${p.description || ""}`.toLocaleLowerCase("es-AR");
+        return categoryMatch && (!term || haystack.includes(term));
+      });
+      const sort = sortSelect.value;
+      if (sort === "name") list.sort((a,b) => a.name.localeCompare(b.name,"es"));
+      if (sort === "price-low" || sort === "price-high") {
+        list.sort((a,b) => {
+          const pa = Number(String(a.price || a.regularPrice || "").replace(/\D/g,"")) || 0;
+          const pb = Number(String(b.price || b.regularPrice || "").replace(/\D/g,"")) || 0;
+          return sort === "price-low" ? pa-pb : pb-pa;
+        });
+      }
+      if (activeCategory === "Fragancias" && sort === "catalog") {
+        list.sort((a,b) => (a.code === "6133" ? -1 : b.code === "6133" ? 1 : 0));
+      }
+      return list;
+    }
+    function render() {
+      const list = getFilteredProducts();
+      const shown = list.slice(0,visibleCount);
+      resultsCount.textContent = `${list.length} productos encontrados · mostrando ${shown.length}`;
+      grid.innerHTML = shown.length ? shown.map(productCard).join("") :
+        `<div class="empty-state">No encontramos productos con esa búsqueda. Probá con otro nombre o categoría.</div>`;
+      loadMore.hidden = shown.length >= list.length;
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.toggle("active",btn.dataset.category === activeCategory));
+    }
+    function setCategory(category) {
+      activeCategory = category;
+      visibleCount = PAGE_SIZE;
+      render();
+    }
+    document.getElementById("filters").addEventListener("click",e => {
+      const btn = e.target.closest("[data-category]");
+      if (btn) setCategory(btn.dataset.category);
+    });
+    document.querySelectorAll("[data-nav-category]").forEach(link => {
+      link.addEventListener("click",() => {
+        const category = link.dataset.navCategory;
+        if (category) setCategory(category);
+        document.getElementById("mainNav").classList.remove("open");
+        document.getElementById("menuToggle").setAttribute("aria-expanded","false");
+      });
+    });
+    searchInput.addEventListener("input",() => {visibleCount=PAGE_SIZE;render();});
+    sortSelect.addEventListener("change",render);
+    loadMore.addEventListener("click",() => {visibleCount += PAGE_SIZE;render();});
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    menuToggle.addEventListener("click",() => {
+      const open = mainNav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded",String(open));
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    fetch("products.json")
+      .then(response => {if(!response.ok) throw new Error("No se pudo cargar products.json"); return response.json();})
+      .then(data => {products = data; render();})
+      .catch(() => {
+        resultsCount.textContent = "No se pudo cargar el catálogo";
+        grid.innerHTML = `<div class="empty-state">No se pudo cargar la lista de productos. Verificá que <strong>products.json</strong> esté junto a <strong>index.html</strong> y que la web se esté ejecutando desde un servidor web.</div>`;
+      });
+  </script>
+</body>
+</html>
